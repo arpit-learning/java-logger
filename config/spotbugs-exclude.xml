@@ -16,4 +16,9 @@
         <Field name="throwable" />
         <Bug pattern="EI_EXPOSE_REP2" />
     </Match>
+    <Match>
+        <Class name="dev.arpit.pm1.logger.enrichers.CallerClassEnricher" />
+        <Field name="excludedClasses" />
+        <Bug pattern="EI_EXPOSE_REP2" />
+    </Match>
 </FindBugsFilter>

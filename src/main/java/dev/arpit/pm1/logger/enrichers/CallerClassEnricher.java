@@ -9,7 +9,7 @@ public class CallerClassEnricher implements ILogEnricher {
   private final Set<String> excludedClasses;
 
   public CallerClassEnricher(Set<String> excludedClasses) {
-    this.excludedClasses = new HashSet<>(excludedClasses);
+    this.excludedClasses = excludedClasses;
   }
 
   @Override
