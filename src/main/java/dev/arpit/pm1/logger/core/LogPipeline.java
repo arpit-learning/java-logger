@@ -6,7 +6,6 @@ import dev.arpit.pm1.logger.models.LogEvent;
 import dev.arpit.pm1.logger.models.LoggerConstant;
 import dev.arpit.pm1.logger.serializers.ILogSerializer;
 import dev.arpit.pm1.logger.writers.ILogWriter;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;

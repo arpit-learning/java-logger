@@ -173,7 +173,8 @@ public class AbstractJsonLoggerTest {
     testLogger = new TestJsonLogger(LogLevel.INFO, logger, new Gson());
 
     // act & assert
-    assertThrows(NullPointerException.class, () -> testLogger.args(() -> "Message", (Object[]) null));
+    assertThrows(
+        NullPointerException.class, () -> testLogger.args(() -> "Message", (Object[]) null));
   }
 
   @Test
