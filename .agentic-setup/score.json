@@ -1,7 +1,7 @@
 {
-  "score": 84,
+  "score": 91,
   "maxScore": 100,
-  "grade": "B",
+  "grade": "A",
   "checks": [
     {
       "id": "claude_md_exists",
@@ -61,16 +61,10 @@
       "id": "mcp_servers",
       "name": "MCP servers configured",
       "category": "existence",
-      "maxPoints": 0,
-      "earnedPoints": 0,
-      "passed": false,
-      "detail": "No MCP servers configured",
-      "suggestion": "MCP servers connect your agent to external tools (databases, Slack, Linear, etc). Add if your team uses external services",
-      "fix": {
-        "action": "configure_mcp",
-        "data": {},
-        "instruction": "Add MCP server configurations in .mcp.json for any external services the project uses."
-      }
+      "maxPoints": 3,
+      "earnedPoints": 3,
+      "passed": true,
+      "detail": "1 server in .cursor/mcp.json"
     },
     {
       "id": "cross_platform_parity",
@@ -97,7 +91,7 @@
       "maxPoints": 6,
       "earnedPoints": 6,
       "passed": true,
-      "detail": "~2962 tokens total across all config files"
+      "detail": "~2990 tokens total across all config files"
     },
     {
       "id": "concreteness",
@@ -150,9 +144,29 @@
       "name": "Project grounding",
       "category": "grounding",
       "maxPoints": 12,
-      "earnedPoints": 12,
+      "earnedPoints": 9,
       "passed": true,
-      "detail": "20/38 project entries referenced in config (53%)"
+      "detail": "23/52 project entries referenced in config (44%)",
+      "suggestion": "Config doesn't mention: .devin, .windsurf",
+      "fix": {
+        "action": "add_references",
+        "data": {
+          "missing": [
+            ".devin",
+            ".windsurf"
+          ],
+          "mentioned": [
+            ".github",
+            ".idea",
+            "config",
+            "gradle",
+            "src"
+          ],
+          "totalEntries": 52,
+          "coverage": 44
+        },
+        "instruction": "Reference these project directories in your config: .devin, .windsurf"
+      }
     },
     {
       "id": "reference_density",
@@ -161,7 +175,7 @@
       "maxPoints": 8,
       "earnedPoints": 8,
       "passed": true,
-      "detail": "121 specific references across 177 lines (68%)"
+      "detail": "127 specific references across 177 lines (72%)"
     },
     {
       "id": "references_valid",
@@ -177,18 +191,18 @@
       "name": "Config freshness vs code",
       "category": "accuracy",
       "maxPoints": 7,
-      "earnedPoints": 0,
+      "earnedPoints": 7,
       "passed": true,
-      "detail": "Config files not tracked in git"
+      "detail": "Config is up to date with latest commits"
     },
     {
       "id": "claude_md_freshness",
       "name": "Config freshness",
       "category": "freshness",
       "maxPoints": 4,
-      "earnedPoints": 0,
-      "passed": false,
-      "detail": "Config files not tracked in git"
+      "earnedPoints": 4,
+      "passed": true,
+      "detail": "Config updated in the latest commit"
     },
     {
       "id": "no_secrets",
@@ -268,23 +282,23 @@
   ],
   "categories": {
     "existence": {
-      "earned": 29,
-      "max": 29
+      "earned": 32,
+      "max": 32
     },
     "quality": {
       "earned": 25,
       "max": 28
     },
     "grounding": {
-      "earned": 20,
+      "earned": 17,
       "max": 20
     },
     "accuracy": {
-      "earned": 8,
+      "earned": 15,
       "max": 15
     },
     "freshness": {
-      "earned": 6,
+      "earned": 10,
       "max": 10
     },
     "bonus": {
@@ -298,5 +312,5 @@
     "codex",
     "github-copilot"
   ],
-  "timestamp": "2026-07-13T13:30:17.144Z"
+  "timestamp": "2026-07-14T17:38:46.557Z"
 }

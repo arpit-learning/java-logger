@@ -8,7 +8,7 @@
 ## Architecture & Component Mapping
 - Core classes in `src/main/java/dev/arpit/pm1/logger/core/` like `Logger.java` and `LoggerConfiguration.java` handle logging initialization.
 - Log pipeline defined in `src/main/java/dev/arpit/pm1/logger/core/LogPipeline.java` routes events to writers.
-- Enrichers in `src/main/java/dev/arpit/pm1/logger/enrichers/` like `MdcEnricher.java` and `ThreadNameEnricher.java` append metadata.
+- Enrichers in `src/main/java/dev/arpit/pm1/logger/enrichers/` like `MdcEnricher.java`, `ThreadNameEnricher.java`, and `CallerClassEnricher.java` append metadata.
 - Level managers in `src/main/java/dev/arpit/pm1/logger/levels/` like `AbstractJsonLogger.java` control level logic.
 - Writers in `src/main/java/dev/arpit/pm1/logger/writers/` like `Slf4jLogWriter.java` and `FileLogWriter.java` output messages.
 
@@ -40,7 +40,7 @@ grep -q "agentic-setup" .git/hooks/pre-commit 2>/dev/null && echo "hook-active" 
 - If **hook-active**: the hook handles sync automatically — just commit normally. Tell the user: "agentic-setup will sync your agent configs automatically via the pre-commit hook."
 - If **no-hook**: run agentic-setup manually before committing:
   1. Tell the user: "agentic-setup: Syncing agent configs with your latest changes..."
-  2. Run: `agentic-setup refresh && git add CLAUDE.md .claude/ .cursor/ .cursorrules .github/copilot-instructions.md .github/instructions/ AGENTS.md AGENTIC_LEARNINGS.md .agents/ .opencode/ .agentic-setup/score.json .agentic-setup/score-history.jsonl 2>/dev/null`
+  2. Run: `agentic-setup refresh && git add AGENTIC_LEARNINGS.md .agentic-setup/score.json .agentic-setup/score-history.jsonl CLAUDE.md .claude/ .github/copilot-instructions.md .github/instructions/ AGENTS.md .agents/ 2>/dev/null`
   3. After it completes, briefly tell the user what agentic-setup updated. Then proceed with the commit.
 
 **Valid `agentic-setup refresh` options:** `--quiet` (suppress output) and `--dry-run` (preview without writing). Do not pass any other flags — options like `--auto-approve`, `--debug`, or `--force` do not exist and will cause errors.
