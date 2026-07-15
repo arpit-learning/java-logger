@@ -21,7 +21,7 @@ jobs:
         with:
           node-version: 22
           registry-url: 'https://npm.pkg.github.com'
-          scope: '@arpit-pm1'
+          scope: '@arpit-learning'
 
       - uses: arpit-pm1/agentic-setup@v1
         with:
