@@ -28,7 +28,7 @@ spotbugs {
 
 ext {
     githubPackagesOwner = 'arpit-learning'
-    githubPackagesRepo = 'logger'
+    githubPackagesRepo = 'java-logger'
     githubPackagesUrl = "https://maven.pkg.github.com/${githubPackagesOwner}/${githubPackagesRepo}"
 }
 
@@ -37,8 +37,8 @@ def githubPackagesCredentials = {
     password = providers.gradleProperty("gpr.key").orElse(providers.environmentVariable("GITHUB_TOKEN")).orNull
 }
 
-group = 'dev.arpit.pm1.logger'
-version = '0.0.0'
+group = 'dev.arpit.learning'
+version = '0.0.3'
 
 tasks.named("spotbugsTest") {
     enabled = false
