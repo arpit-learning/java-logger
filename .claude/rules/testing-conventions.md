@@ -5,7 +5,7 @@ paths:
 
 # Testing Conventions
 
-- Write unit tests under `src/test/java/dev/arpit/pm1/logger/` structure.
+- Write unit tests under `src/test/java/dev/arpit/learning/logger/` structure.
 - Enforce JUnit 5 annotations like `@Test`, `@BeforeEach`, and `@AfterEach`.
 - Enforce JUnit 5 assertions like `assertNotNull()` and `assertThrows()`.
 - Enforce Mockito mocking via `org.mockito.Mockito.mock()` for class `org.slf4j.Logger`.

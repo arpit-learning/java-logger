@@ -6,11 +6,11 @@
 - Run `curl -sf http://localhost:8080/actuator/health` to verify status.
 
 ## Architecture & Component Mapping
-- Core classes in `src/main/java/dev/arpit/pm1/logger/core/` like `Logger.java` and `LoggerConfiguration.java` handle logging initialization.
-- Log pipeline defined in `src/main/java/dev/arpit/pm1/logger/core/LogPipeline.java` routes events to writers.
-- Enrichers in `src/main/java/dev/arpit/pm1/logger/enrichers/` like `MdcEnricher.java`, `ThreadNameEnricher.java`, and `CallerClassEnricher.java` append metadata.
-- Level managers in `src/main/java/dev/arpit/pm1/logger/levels/` like `AbstractJsonLogger.java` control level logic.
-- Writers in `src/main/java/dev/arpit/pm1/logger/writers/` like `Slf4jLogWriter.java` and `FileLogWriter.java` output messages.
+- Core classes in `src/main/java/dev/arpit/learning/logger/core/` like `Logger.java` and `LoggerConfiguration.java` handle logging initialization.
+- Log pipeline defined in `src/main/java/dev/arpit/learning/logger/core/LogPipeline.java` routes events to writers.
+- Enrichers in `src/main/java/dev/arpit/learning/logger/enrichers/` like `MdcEnricher.java`, `ThreadNameEnricher.java`, and `CallerClassEnricher.java` append metadata.
+- Level managers in `src/main/java/dev/arpit/learning/logger/levels/` like `AbstractJsonLogger.java` control level logic.
+- Writers in `src/main/java/dev/arpit/learning/logger/writers/` like `Slf4jLogWriter.java` and `FileLogWriter.java` output messages.
 
 ## Prerequisites & Setup Requirements
 - JDK 17 required via `build.gradle` and `settings.gradle`.
@@ -20,12 +20,12 @@
 
 ## Workflow & Code Change Routing
 - Verify build with `./gradlew build -x test` before committing.
-- Format exceptions using `ExceptionFormatter.java` in `src/main/java/dev/arpit/pm1/logger/utils/`.
+- Format exceptions using `ExceptionFormatter.java` in `src/main/java/dev/arpit/learning/logger/utils/`.
 - Run `agentic-setup refresh` to sync configs.
 
 ## Conventions
 - Use Conventional Commits format for all git messages.
-- Test files located in `src/test/java/dev/arpit/pm1/logger/` using JUnit 5 `org.junit.jupiter.api.Test`.
+- Test files located in `src/test/java/dev/arpit/learning/logger/` using JUnit 5 `org.junit.jupiter.api.Test`.
 
 <!-- agentic:managed:pre-commit -->
 ## Before Committing
@@ -40,7 +40,7 @@ grep -q "agentic-setup" .git/hooks/pre-commit 2>/dev/null && echo "hook-active" 
 - If **hook-active**: the hook handles sync automatically — just commit normally. Tell the user: "agentic-setup will sync your agent configs automatically via the pre-commit hook."
 - If **no-hook**: run agentic-setup manually before committing:
   1. Tell the user: "agentic-setup: Syncing agent configs with your latest changes..."
-  2. Run: `agentic-setup refresh && git add AGENTIC_LEARNINGS.md .agentic-setup/score.json .agentic-setup/score-history.jsonl CLAUDE.md .claude/ .github/copilot-instructions.md .github/instructions/ AGENTS.md .agents/ 2>/dev/null`
+  2. Run: `agentic-setup refresh && git add AGENTIC_LEARNINGS.md .agentic-setup/score.json .agentic-setup/score-history.jsonl .cursor/ .cursorrules .github/copilot-instructions.md .github/instructions/ 2>/dev/null`
   3. After it completes, briefly tell the user what agentic-setup updated. Then proceed with the commit.
 
 **Valid `agentic-setup refresh` options:** `--quiet` (suppress output) and `--dry-run` (preview without writing). Do not pass any other flags — options like `--auto-approve`, `--debug`, or `--force` do not exist and will cause errors.
@@ -69,7 +69,7 @@ Pin your choice (`/model` in Claude Code, or `AGENTIC_SETUP_MODEL` when using ag
 <!-- agentic:managed:sync -->
 ## Context Sync
 
-This project uses [agentic-setup](https://github.com/arpit-learning/agentic-setup) to keep AI agent configs in sync across Claude Code, Cursor, Copilot, and Codex.
+This project uses [agentic-setup](https://github.com/arpit-pm1/agentic-setup) to keep AI agent configs in sync across Claude Code, Cursor, Copilot, and Codex.
 Configs update automatically before each commit via `agentic-setup refresh`.
 If the pre-commit hook is not set up, run `npx agentic-setup setup` in your terminal.
 <!-- /agentic:managed:sync -->
