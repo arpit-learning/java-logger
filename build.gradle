@@ -27,7 +27,7 @@ spotbugs {
 }
 
 ext {
-    githubPackagesOwner = 'arpit-pm1'
+    githubPackagesOwner = 'arpit-learning'
     githubPackagesRepo = 'logger'
     githubPackagesUrl = "https://maven.pkg.github.com/${githubPackagesOwner}/${githubPackagesRepo}"
 }

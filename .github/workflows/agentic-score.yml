@@ -21,21 +21,20 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: actions/setup-node@v6
+      - uses: actions/setup-node@v4
         with:
-          node-version: 20.19
-          cache: npm
-
-      - run: npm ci
-      - run: npm run build
+          node-version: 22
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@arpit-learning'
 
       - name: Fetch base branch
         run: git fetch origin ${{ github.base_ref }}:refs/remotes/origin/${{ github.base_ref }}
 
       - name: Score PR vs base
         run: |
-          node dist/bin.js score --compare origin/${{ github.base_ref }} --comment > comment.md
+          npx @arpit-learning/agentic-setup score --compare origin/${{ github.base_ref }} --comment > comment.md
         env:
+          NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
           AGENTIC_SETUP_SKIP_UPDATE_CHECK: "1"
           AGENTIC_SETUP_TELEMETRY_DISABLED: "1"
 

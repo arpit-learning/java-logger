@@ -19,21 +19,25 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@arpit-learning'
 
-      - name: agentic-setup check
-        run: npx agentic-setup@latest check --json
-        env:
-          AGENTIC_SETUP_SKIP_UPDATE_CHECK: '1'
-          AGENTIC_SETUP_TELEMETRY_DISABLED: '1'
-
-      - uses: arpit-pm1/agentic-setup@v1
+      - uses: arpit-learning/agentic-setup@v1
         with:
           mode: sync
           auto-refresh: true
           comment: true
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.GH_TOKEN }}
         env:
+          NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          AGENTIC_SETUP_SKIP_UPDATE_CHECK: '1'
+          AGENTIC_SETUP_TELEMETRY_DISABLED: '1'
+
+      - name: agentic-setup check
+        run: npx @arpit-learning/agentic-setup@latest check --json
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
           AGENTIC_SETUP_SKIP_UPDATE_CHECK: '1'
           AGENTIC_SETUP_TELEMETRY_DISABLED: '1'

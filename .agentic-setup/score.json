@@ -91,7 +91,7 @@
       "maxPoints": 6,
       "earnedPoints": 6,
       "passed": true,
-      "detail": "~2990 tokens total across all config files"
+      "detail": "~2984 tokens total across all config files"
     },
     {
       "id": "concreteness",
@@ -146,7 +146,7 @@
       "maxPoints": 12,
       "earnedPoints": 9,
       "passed": true,
-      "detail": "23/52 project entries referenced in config (44%)",
+      "detail": "25/52 project entries referenced in config (48%)",
       "suggestion": "Config doesn't mention: .devin, .windsurf",
       "fix": {
         "action": "add_references",
@@ -163,7 +163,7 @@
             "src"
           ],
           "totalEntries": 52,
-          "coverage": 44
+          "coverage": 48
         },
         "instruction": "Reference these project directories in your config: .devin, .windsurf"
       }
@@ -175,7 +175,7 @@
       "maxPoints": 8,
       "earnedPoints": 8,
       "passed": true,
-      "detail": "127 specific references across 177 lines (72%)"
+      "detail": "131 specific references across 177 lines (74%)"
     },
     {
       "id": "references_valid",
@@ -312,5 +312,5 @@
     "codex",
     "github-copilot"
   ],
-  "timestamp": "2026-07-14T17:38:46.557Z"
+  "timestamp": "2026-07-15T04:36:51.499Z"
 }
