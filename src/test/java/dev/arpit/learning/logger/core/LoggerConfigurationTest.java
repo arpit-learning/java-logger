@@ -7,7 +7,6 @@ import com.google.gson.GsonBuilder;
 import dev.arpit.learning.logger.enrichers.ILogEnricher;
 import dev.arpit.learning.logger.enrichers.ThreadNameEnricher;
 import dev.arpit.learning.logger.levels.*;
-import dev.arpit.pm1.logger.levels.*;
 import dev.arpit.learning.logger.models.LogLevel;
 import dev.arpit.learning.logger.serializers.GsonLogSerializer;
 import dev.arpit.learning.logger.serializers.ILogSerializer;
