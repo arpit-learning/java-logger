@@ -79,10 +79,12 @@ jobs:
           VERSION="${{ steps.bump.outputs.version }}"
           git add build.gradle
           git commit -m "chore: release v${VERSION}"
-          git tag "v${VERSION}"
+          git tag -a "v${VERSION}" -m "Release v${VERSION}"
 
       - name: Push release branch and tag
-        run: git push -u origin HEAD --follow-tags
+        run: |
+          git push -u origin HEAD
+          git push origin "v${{ steps.bump.outputs.version }}"
 
       - name: Open pull request
         id: pr
