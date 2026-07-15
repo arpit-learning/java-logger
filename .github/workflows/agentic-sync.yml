@@ -30,6 +30,7 @@ jobs:
           comment: true
           github-token: ${{ secrets.GH_TOKEN }}
         env:
+          NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           AGENTIC_SETUP_SKIP_UPDATE_CHECK: '1'
           AGENTIC_SETUP_TELEMETRY_DISABLED: '1'
