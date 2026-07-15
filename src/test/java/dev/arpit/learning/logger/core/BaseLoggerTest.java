@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 import dev.arpit.learning.logger.levels.*;
-import dev.arpit.pm1.logger.levels.*;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 
