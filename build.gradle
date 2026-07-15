@@ -37,7 +37,7 @@ def githubPackagesCredentials = {
     password = providers.gradleProperty("gpr.key").orElse(providers.environmentVariable("GITHUB_TOKEN")).orNull
 }
 
-group = 'dev.arpit.pm1.logger'
+group = 'dev.arpit.learning'
 version = '0.0.0'
 
 tasks.named("spotbugsTest") {
