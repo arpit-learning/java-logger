@@ -1,8 +1,8 @@
 ---
 description: Enforce AbstractJsonLogger and IJsonLogger patterns
-globs: src/main/java/dev/arpit/pm1/logger/levels/**/*.java
+globs: src/main/java/dev/arpit/learning/logger/levels/**/*.java
 ---
-- Extend class `AbstractJsonLogger.java` when adding log levels under `src/main/java/dev/arpit/pm1/logger/levels/`.
+- Extend class `AbstractJsonLogger.java` when adding log levels under `src/main/java/dev/arpit/learning/logger/levels/`.
 - Implement interface methods from `IJsonLogger.java` for builder pattern support.
 - Override method `log()` to invoke `executePipeline()`.
 - Override method `toString()` to invoke `formatMessage()`.
