@@ -32,7 +32,7 @@ jobs:
 
       - name: Score PR vs base
         run: |
-          npx @arpit-pm1/agentic-setup score --compare origin/${{ github.base_ref }} --comment > comment.md
+          npx @arpit-learning/agentic-setup score --compare origin/${{ github.base_ref }} --comment > comment.md
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
           AGENTIC_SETUP_SKIP_UPDATE_CHECK: "1"

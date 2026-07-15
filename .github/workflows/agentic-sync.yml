@@ -35,7 +35,7 @@ jobs:
           AGENTIC_SETUP_TELEMETRY_DISABLED: '1'
 
       - name: agentic-setup check
-        run: npx @arpit-pm1/agentic-setup@latest check --json
+        run: npx @arpit-learning/agentic-setup@latest check --json
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
           AGENTIC_SETUP_SKIP_UPDATE_CHECK: '1'
