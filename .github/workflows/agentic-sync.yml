@@ -23,7 +23,7 @@ jobs:
           registry-url: 'https://npm.pkg.github.com'
           scope: '@arpit-learning'
 
-      - uses: arpit-pm1/agentic-setup@v1
+      - uses: arpit-learning/agentic-setup@v1
         with:
           mode: sync
           auto-refresh: true

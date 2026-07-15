@@ -82,7 +82,7 @@ Pin your choice (`/model` in Claude Code, or `AGENTIC_SETUP_MODEL` when using ag
 <!-- agentic:managed:sync -->
 ## Context Sync
 
-This project uses [agentic-setup](https://github.com/arpit-pm1/agentic-setup) to keep AI agent configs in sync across Claude Code, Cursor, Copilot, and Codex.
+This project uses [agentic-setup](https://github.com/arpit-learning/agentic-setup) to keep AI agent configs in sync across Claude Code, Cursor, Copilot, and Codex.
 Configs update automatically before each commit via `agentic-setup refresh`.
 If the pre-commit hook is not set up, run `npx agentic-setup setup` in your terminal.
 <!-- /agentic:managed:sync -->
