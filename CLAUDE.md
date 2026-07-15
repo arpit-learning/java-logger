@@ -18,12 +18,12 @@
 ```
 
 ## Architecture & Component Mapping
-- Core classes in `src/main/java/dev/arpit/pm1/logger/core/` handle logging initialization.
-- Log pipeline defined in `src/main/java/dev/arpit/pm1/logger/core/LogPipeline.java` routes events to writers.
-- Enrichers in `src/main/java/dev/arpit/pm1/logger/enrichers/` append metadata.
-- Level managers in `src/main/java/dev/arpit/pm1/logger/levels/` control level logic.
-- Writers in `src/main/java/dev/arpit/pm1/logger/writers/` output messages.
-- GitHub actions configurations are located in `.github/` (contains `copilot-instructions.md`).
+- Core classes in `src/main/java/dev/arpit/learning/logger/core/` handle logging initialization.
+- Log pipeline defined in `src/main/java/dev/arpit/learning/logger/core/LogPipeline.java` routes events to writers.
+- Enrichers in `src/main/java/dev/arpit/learning/logger/enrichers/` append metadata.
+- Level managers in `src/main/java/dev/arpit/learning/logger/levels/` control level logic.
+- Writers in `src/main/java/dev/arpit/learning/logger/writers/` output messages.
+- GitHub actions configurations are located in `.github/` (contains `copilot-instructions.md` and workflows in `.github/workflows/` like `publish-package.yml`, `version-bump.yml`, `agentic-score.yml`, and `agentic-sync.yml`).
 - Project settings are managed in `.idea/` (contains modules, `AndroidProjectSystem.xml`, and `awsToolkit.xml`).
 
 @./run.md
@@ -36,12 +36,12 @@
 
 ## Workflow & Code Change Routing
 - Verify build with `./gradlew build -x test` before committing.
-- Format exceptions in `src/main/java/dev/arpit/pm1/logger/utils/`.
+- Format exceptions in `src/main/java/dev/arpit/learning/logger/utils/`.
 - Ensure config files match target system before running `git commit`.
 
 ## Conventions
 - Use Conventional Commits format for all git messages.
-- Test files located in `src/test/java/dev/arpit/pm1/logger/` using JUnit 5.
+- Test files located in `src/test/java/dev/arpit/learning/logger/` using JUnit 5.
 
 <!-- agentic:managed:pre-commit -->
 ## Before Committing
@@ -56,7 +56,7 @@ grep -q "agentic-setup" .git/hooks/pre-commit 2>/dev/null && echo "hook-active" 
 - If **hook-active**: the hook handles sync automatically — just commit normally. Tell the user: "agentic-setup will sync your agent configs automatically via the pre-commit hook."
 - If **no-hook**: run agentic-setup manually before committing:
   1. Tell the user: "agentic-setup: Syncing agent configs with your latest changes..."
-  2. Run: `agentic-setup refresh && git add AGENTIC_LEARNINGS.md .agentic-setup/score.json .agentic-setup/score-history.jsonl CLAUDE.md .claude/ .cursor/ .cursorrules .github/copilot-instructions.md .github/instructions/ AGENTS.md .agents/ .opencode/ 2>/dev/null`
+  2. Run: `agentic-setup refresh && git add AGENTIC_LEARNINGS.md .agentic-setup/score.json .agentic-setup/score-history.jsonl CLAUDE.md .claude/ .cursor/ .cursorrules .github/copilot-instructions.md .github/instructions/ AGENTS.md .agents/ 2>/dev/null`
   3. After it completes, briefly tell the user what agentic-setup updated. Then proceed with the commit.
 
 **Valid `agentic-setup refresh` options:** `--quiet` (suppress output) and `--dry-run` (preview without writing). Do not pass any other flags — options like `--auto-approve`, `--debug`, or `--force` do not exist and will cause errors.

@@ -1,5 +1,5 @@
 # agentic-setup project configuration
-# https://github.com/arpit-pm1/agentic-setup
+# https://github.com/arpit-learning/agentic-setup
 
 version: 1
 agents: [claude, cursor, codex, github-copilot]
