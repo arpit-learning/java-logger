@@ -7,17 +7,17 @@
     
     <!-- Ignore storing mutable objects for specific fields that shouldn't be cloned -->
     <Match>
-        <Class name="core.dev.arpit.learning.logger.LogPipeline" />
+        <Class name="dev.arpit.learning.logger.core.LogPipeline" />
         <Field name="logWriter" />
         <Bug pattern="EI_EXPOSE_REP2" />
     </Match>
     <Match>
-        <Class name="models.dev.arpit.learning.logger.LogEvent$Builder" />
+        <Class name="dev.arpit.learning.logger.models.LogEvent$Builder" />
         <Field name="throwable" />
         <Bug pattern="EI_EXPOSE_REP2" />
     </Match>
     <Match>
-        <Class name="enrichers.dev.arpit.learning.logger.CallerClassEnricher" />
+        <Class name="dev.arpit.learning.logger.enrichers.CallerClassEnricher" />
         <Field name="excludedClasses" />
         <Bug pattern="EI_EXPOSE_REP2" />
     </Match>
