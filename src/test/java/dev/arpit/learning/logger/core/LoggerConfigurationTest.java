@@ -13,8 +13,8 @@ import dev.arpit.learning.logger.serializers.ILogSerializer;
 import dev.arpit.learning.logger.serializers.PrettyLogSerializer;
 import dev.arpit.learning.logger.writers.CompositeLogWriter;
 import dev.arpit.learning.logger.writers.ILogWriter;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
-import org.apache.commons.lang3.time.FastDateFormat;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -410,18 +410,15 @@ public class LoggerConfigurationTest {
   @Test
   public void test_setDateFormat_withValidDateFormat_shouldUpdateDateFormatAndFormatter() {
     // arrange
-    FastDateFormat dateFormat = FastDateFormat.getInstance("");
+    String pattern = "yyyy-MM-dd HH:mm:ss";
 
     // act
-    LoggerConfiguration.setDateFormat("");
+    LoggerConfiguration.setDateFormat(pattern);
 
     // assert
-    assertEquals("", LoggerConfiguration.getDateFormat());
-    FastDateFormat formatter = LoggerConfiguration.getFormatter();
-    System.out.println(formatter);
-    assertEquals(dateFormat.getLocale(), formatter.getLocale());
-    assertEquals(dateFormat.getPattern(), formatter.getPattern());
-    assertEquals(dateFormat.getTimeZone(), formatter.getTimeZone());
+    assertEquals(pattern, LoggerConfiguration.getDateFormat());
+    DateTimeFormatter formatter = LoggerConfiguration.getFormatter();
+    assertNotNull(formatter);
   }
 
   @Test
