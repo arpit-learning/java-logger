@@ -96,7 +96,7 @@ public class LogEventTest {
     LogEvent.Builder builder = LogEvent.builder();
 
     // act & assert
-    assertThrows(NullPointerException.class, () -> builder.setArgs(null));
+    assertThrows(NullPointerException.class, () -> builder.setArgs((Object[]) null));
   }
 
   @Test

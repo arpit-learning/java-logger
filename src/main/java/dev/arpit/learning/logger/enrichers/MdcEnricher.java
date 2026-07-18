@@ -7,8 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import lombok.NonNull;
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.MDC;
+import org.springframework.util.StringUtils;
 
 public class MdcEnricher implements ILogEnricher {
   @Override
@@ -23,7 +23,7 @@ public class MdcEnricher implements ILogEnricher {
     @NonNull List<ILoggerConstant> keys = LoggerConfiguration.getMdcKeys();
     for (ILoggerConstant attr : keys) {
       String value = MDC.get(attr.getValue());
-      if (StringUtils.isNotBlank(value)) {
+      if (StringUtils.hasText(value)) {
         attributes.put(attr, value);
       }
     }
