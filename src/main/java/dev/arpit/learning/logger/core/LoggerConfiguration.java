@@ -10,6 +10,7 @@ import dev.arpit.learning.logger.serializers.ILogSerializer;
 import dev.arpit.learning.logger.serializers.PrettyLogSerializer;
 import dev.arpit.learning.logger.utils.ExceptionFormatter;
 import dev.arpit.learning.logger.writers.*;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -18,7 +19,6 @@ import java.util.function.Function;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
-import org.apache.commons.lang3.time.FastDateFormat;
 import org.slf4j.Logger;
 
 public class LoggerConfiguration {
@@ -29,7 +29,10 @@ public class LoggerConfiguration {
   @Getter @Setter private static @NonNull String fileLoggingPath = "";
   @Getter @Setter private static @NonNull List<ILoggerConstant> mdcKeys = new ArrayList<>();
   @Getter private static @NonNull String dateFormat = "yyyy-MM-dd HH:mm:ss.SSSZ";
-  @Getter private static @NonNull FastDateFormat formatter = FastDateFormat.getInstance(dateFormat);
+
+  @Getter
+  private static @NonNull DateTimeFormatter formatter = DateTimeFormatter.ofPattern(dateFormat);
+
   @Getter private static final LoggerConfiguration instance = new LoggerConfiguration();
   @Getter private final Set<String> excludedClasses = new HashSet<>();
   @Getter private final List<ILogEnricher> enrichers = new ArrayList<>();
@@ -140,6 +143,6 @@ public class LoggerConfiguration {
 
   public static void setDateFormat(@NonNull String dateFormat) {
     LoggerConfiguration.dateFormat = dateFormat;
-    LoggerConfiguration.formatter = FastDateFormat.getInstance(dateFormat);
+    LoggerConfiguration.formatter = DateTimeFormatter.ofPattern(dateFormat);
   }
 }
