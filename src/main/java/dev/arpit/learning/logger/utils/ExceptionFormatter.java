@@ -5,9 +5,10 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import dev.arpit.learning.logger.models.ILoggerEnabledException;
 import dev.arpit.learning.logger.models.LoggerConstant;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.Map;
 import lombok.NonNull;
-import org.apache.commons.lang3.exception.ExceptionUtils;
 
 public class ExceptionFormatter {
   public static @NonNull JsonElement format(@NonNull Throwable throwable, @NonNull Gson gson) {
@@ -22,9 +23,16 @@ public class ExceptionFormatter {
     } else {
       jsonObject.add(
           LoggerConstant.ATTRIBUTE_EXCEPTION.getValue(),
-          gson.toJsonTree(ExceptionUtils.getStackTrace(throwable)));
+          gson.toJsonTree(getStackTraceAsString(throwable)));
     }
 
     return jsonObject;
+  }
+
+  private static @NonNull String getStackTraceAsString(@NonNull Throwable exception) {
+    StringWriter stringWriter = new StringWriter();
+    PrintWriter printWriter = new PrintWriter(stringWriter);
+    exception.printStackTrace(printWriter);
+    return stringWriter.toString();
   }
 }
