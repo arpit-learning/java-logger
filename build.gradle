@@ -37,7 +37,7 @@ def githubPackagesCredentials = {
 }
 
 group = 'dev.arpit.learning'
-version = '0.0.5'
+version = '0.0.6'
 
 tasks.named("spotbugsTest") {
     enabled = false
