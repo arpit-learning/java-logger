@@ -30,48 +30,65 @@ public class MdcEnricherTest {
   @Test
   public void test_enrich_shouldCopyMdcAndExtractsSpecificKeys() {
     // arrange
-    MDC.put(LoggerConstant.ATTRIBUTE_MDC_TRACE_ID.getValue(), "12345");
-    MDC.put("some_other_key", "value");
     enricher = new MdcEnricher();
+    Map<String, String> mockMdcMap = Map.of(
+        LoggerConstant.ATTRIBUTE_MDC_TRACE_ID.getValue(), "12345",
+        "some_other_key", "value"
+    );
 
-    // act
-    Map<ILoggerConstant, Object> attributes = enricher.enrich();
+    try (MockedStatic<MDC> mockedMdc = mockStatic(MDC.class)) {
+      mockedMdc.when(MDC::getCopyOfContextMap).thenReturn(mockMdcMap);
+      mockedMdc.when(() -> MDC.get(LoggerConstant.ATTRIBUTE_MDC_TRACE_ID.getValue())).thenReturn("12345");
+      mockedMdc.when(() -> MDC.get("some_other_key")).thenReturn("value");
 
-    // assert
-    assertNotNull(attributes);
-    assertEquals(2, attributes.size());
-    Object mdcObj = attributes.get(LoggerConstant.ATTRIBUTE_MDC);
-    @SuppressWarnings("unchecked")
-    Map<String, String> mdcMap = (Map<String, String>) mdcObj;
-    assertNotNull(mdcMap);
-    assertEquals("12345", mdcMap.get("trace_id"));
-    assertEquals("value", mdcMap.get("some_other_key"));
-    assertEquals("12345", attributes.get(LoggerConstant.ATTRIBUTE_MDC_TRACE_ID));
+      // act
+      Map<ILoggerConstant, Object> attributes = enricher.enrich();
+
+      // assert
+      assertNotNull(attributes);
+      assertEquals(2, attributes.size());
+      Object mdcObj = attributes.get(LoggerConstant.ATTRIBUTE_MDC);
+      @SuppressWarnings("unchecked")
+      Map<String, String> mdcMap = (Map<String, String>) mdcObj;
+      assertNotNull(mdcMap);
+      assertEquals("12345", mdcMap.get("trace_id"));
+      assertEquals("value", mdcMap.get("some_other_key"));
+      assertEquals("12345", attributes.get(LoggerConstant.ATTRIBUTE_MDC_TRACE_ID));
+    }
   }
 
   @Test
   public void test_enrich_withKeyNotPresentInMdc_shouldCopyMdcAndExtractsOnlyPresentSpecificKeys() {
     // arrange
-    MDC.put(LoggerConstant.ATTRIBUTE_MDC_TRACE_ID.getValue(), "12345");
-    MDC.put("some_other_key", "value");
     enricher = new MdcEnricher();
     LoggerConfiguration.setMdcKeys(
         List.of(LoggerConstant.ATTRIBUTE_MDC_TRACE_ID, LoggerConstant.ATTRIBUTE_MDC_USER_ID));
+    Map<String, String> mockMdcMap = Map.of(
+        LoggerConstant.ATTRIBUTE_MDC_TRACE_ID.getValue(), "12345",
+        "some_other_key", "value"
+    );
 
-    // act
-    Map<ILoggerConstant, Object> attributes = enricher.enrich();
+    try (MockedStatic<MDC> mockedMdc = mockStatic(MDC.class)) {
+      mockedMdc.when(MDC::getCopyOfContextMap).thenReturn(mockMdcMap);
+      mockedMdc.when(() -> MDC.get(LoggerConstant.ATTRIBUTE_MDC_TRACE_ID.getValue())).thenReturn("12345");
+      mockedMdc.when(() -> MDC.get("some_other_key")).thenReturn("value");
+      mockedMdc.when(() -> MDC.get(LoggerConstant.ATTRIBUTE_MDC_USER_ID.getValue())).thenReturn(null);
 
-    // assert
-    assertNotNull(attributes);
-    assertEquals(2, attributes.size());
-    Object mdcObj = attributes.get(LoggerConstant.ATTRIBUTE_MDC);
-    @SuppressWarnings("unchecked")
-    Map<String, String> mdcMap = (Map<String, String>) mdcObj;
-    assertNotNull(mdcMap);
-    assertEquals("12345", mdcMap.get("trace_id"));
-    assertEquals("value", mdcMap.get("some_other_key"));
-    assertEquals("12345", attributes.get(LoggerConstant.ATTRIBUTE_MDC_TRACE_ID));
-    assertFalse(attributes.containsKey(LoggerConstant.ATTRIBUTE_MDC_USER_ID));
+      // act
+      Map<ILoggerConstant, Object> attributes = enricher.enrich();
+
+      // assert
+      assertNotNull(attributes);
+      assertEquals(2, attributes.size());
+      Object mdcObj = attributes.get(LoggerConstant.ATTRIBUTE_MDC);
+      @SuppressWarnings("unchecked")
+      Map<String, String> mdcMap = (Map<String, String>) mdcObj;
+      assertNotNull(mdcMap);
+      assertEquals("12345", mdcMap.get("trace_id"));
+      assertEquals("value", mdcMap.get("some_other_key"));
+      assertEquals("12345", attributes.get(LoggerConstant.ATTRIBUTE_MDC_TRACE_ID));
+      assertFalse(attributes.containsKey(LoggerConstant.ATTRIBUTE_MDC_USER_ID));
+    }
   }
 
   @Test
