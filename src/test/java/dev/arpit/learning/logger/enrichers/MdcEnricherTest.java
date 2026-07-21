@@ -31,14 +31,15 @@ public class MdcEnricherTest {
   public void test_enrich_shouldCopyMdcAndExtractsSpecificKeys() {
     // arrange
     enricher = new MdcEnricher();
-    Map<String, String> mockMdcMap = Map.of(
-        LoggerConstant.ATTRIBUTE_MDC_TRACE_ID.getValue(), "12345",
-        "some_other_key", "value"
-    );
+    Map<String, String> mockMdcMap =
+        Map.of(
+            LoggerConstant.ATTRIBUTE_MDC_TRACE_ID.getValue(), "12345", "some_other_key", "value");
 
     try (MockedStatic<MDC> mockedMdc = mockStatic(MDC.class)) {
       mockedMdc.when(MDC::getCopyOfContextMap).thenReturn(mockMdcMap);
-      mockedMdc.when(() -> MDC.get(LoggerConstant.ATTRIBUTE_MDC_TRACE_ID.getValue())).thenReturn("12345");
+      mockedMdc
+          .when(() -> MDC.get(LoggerConstant.ATTRIBUTE_MDC_TRACE_ID.getValue()))
+          .thenReturn("12345");
       mockedMdc.when(() -> MDC.get("some_other_key")).thenReturn("value");
 
       // act
@@ -63,16 +64,19 @@ public class MdcEnricherTest {
     enricher = new MdcEnricher();
     LoggerConfiguration.setMdcKeys(
         List.of(LoggerConstant.ATTRIBUTE_MDC_TRACE_ID, LoggerConstant.ATTRIBUTE_MDC_USER_ID));
-    Map<String, String> mockMdcMap = Map.of(
-        LoggerConstant.ATTRIBUTE_MDC_TRACE_ID.getValue(), "12345",
-        "some_other_key", "value"
-    );
+    Map<String, String> mockMdcMap =
+        Map.of(
+            LoggerConstant.ATTRIBUTE_MDC_TRACE_ID.getValue(), "12345", "some_other_key", "value");
 
     try (MockedStatic<MDC> mockedMdc = mockStatic(MDC.class)) {
       mockedMdc.when(MDC::getCopyOfContextMap).thenReturn(mockMdcMap);
-      mockedMdc.when(() -> MDC.get(LoggerConstant.ATTRIBUTE_MDC_TRACE_ID.getValue())).thenReturn("12345");
+      mockedMdc
+          .when(() -> MDC.get(LoggerConstant.ATTRIBUTE_MDC_TRACE_ID.getValue()))
+          .thenReturn("12345");
       mockedMdc.when(() -> MDC.get("some_other_key")).thenReturn("value");
-      mockedMdc.when(() -> MDC.get(LoggerConstant.ATTRIBUTE_MDC_USER_ID.getValue())).thenReturn(null);
+      mockedMdc
+          .when(() -> MDC.get(LoggerConstant.ATTRIBUTE_MDC_USER_ID.getValue()))
+          .thenReturn(null);
 
       // act
       Map<ILoggerConstant, Object> attributes = enricher.enrich();
